@@ -1,0 +1,23 @@
+# Use postgres/example user/password credentials
+version: '3.9'
+
+services:
+  auction-db:
+    image: postgres
+    restart: always
+    container_name: auction-db
+    ports:
+      - 5432:5432
+    # set shared memory limit when using docker-compose
+    shm_size: 128mb
+    # or set shared memory limit when deploy via swarm stack
+    volumes:
+      - postgres:/daa/postgres
+
+    environment:
+      POSTGRES_PASSWORD: example
+      PG_DATA: /data/postgres
+volumes:
+  postgres:
+
+ 
